@@ -260,13 +260,13 @@ For example, it could be used for a tagging system like so::
         object_id = models.PositiveBigIntegerField()
         content_object = GenericForeignKey("content_type", "object_id")
 
-        def __str__(self):
-            return self.tag
-
         class Meta:
             indexes = [
                 models.Index(fields=["content_type", "object_id"]),
             ]
+
+        def __str__(self):
+            return self.tag
 
 A normal :class:`~django.db.models.ForeignKey` can only "point
 to" one other model, which means that if the ``TaggedItem`` model used a
